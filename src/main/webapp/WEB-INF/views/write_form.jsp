@@ -28,7 +28,7 @@
 		<tr>
 			<td colspan = "2">
 				<input type = "submit" value = "글입력">&nbsp;&nbsp;
-				<input type = "button" value = "글목록" onclick>&nbsp;&nbsp;
+				<input type = "button" value = "글목록" onclick = "javascript:window.location.href = 'list'">
 		</tr>
 		</form>
 	</table>

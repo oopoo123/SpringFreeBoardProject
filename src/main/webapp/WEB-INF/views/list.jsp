@@ -22,14 +22,20 @@
 		<c:forEach items="${fboardDtos}" var="fboardDto">
 		<tr>
 			<td>${fboardDto.fbnum}</td>
-			<td>${fboardDto.fbtitle}</td>
+			<td>
+				<a href = "content_view?fbnum=${fboardDto.fbnum}">${fboardDto.fbtitle}</a>
+			</td>
 			<td>${fboardDto.fbname}</td>
 			<td>${fboardDto.fbdate}</td>
 			<td>${fboardDto.fbhit}</td>
 		</tr>
 		</c:forEach>
 		
-		
+		<tr>
+			<td colspan = "5">
+				<input type = "button" value = "글쓰기" onclick = "javascript:window.location.href = 'write_form'">
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

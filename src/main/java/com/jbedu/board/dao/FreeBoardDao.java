@@ -76,7 +76,6 @@ public class FreeBoardDao {
 			conn = dataSource.getConnection();
 			String sql = "SELECT * FROM freeboard ORDER BY fbnum DESC";
 			// 내림차순으로 정렬된 모든 데이터 요청
-			
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
@@ -125,5 +124,65 @@ public class FreeBoardDao {
 		return dtos;
 	}
 	
+	public FboardDto content_view(String clickNum) {
+		
+		Connection conn = null; 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		//ArrayList<FboardDto> dtos = new ArrayList<FboardDto>();
+		FboardDto fboardDto = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "SELECT * FROM freeboard WHERE fbnum = ?";
+			// 내림차순으로 정렬된 모든 데이터 요청
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, clickNum);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) { // 다음 레코드가 있으면 참, 아니면 거짓
+				int fbnum = rs.getInt("fbnum");
+				String fbname = rs.getString("fbname");
+				String fbtitle = rs.getString("fbtitle");
+				String fbcontent = rs.getString("fbcontent");
+				int fbhit = rs.getInt("fbhit");
+				Timestamp fbdate = rs.getTimestamp("fbdate");
+				
+				fboardDto = new FboardDto(fbnum, fbname, fbtitle, fbcontent, fbhit, fbdate);
+				
+//				fboardDto.setFbnum(fbnum);
+//				fboardDto.setFbname(fbname);
+//				fboardDto.setFbtitle(fbtitle);
+//				fboardDto.setFbcontent(fbcontent);
+//				fboardDto.setFbhit(fbhit);
+//				fboardDto.setFbdate(fbdate);
+				
+//				dtos.add(fboardDto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return fboardDto;
+	}
 	
 }
