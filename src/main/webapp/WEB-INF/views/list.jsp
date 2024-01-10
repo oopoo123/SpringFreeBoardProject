@@ -8,8 +8,13 @@
 <title>자유게시판 글목록</title>
 </head>
 <body>
-	<h2>자유게시판 글목록</h2>
+	<a href="list"><h2>자유게시판 글목록</h2></a>
 	<hr>
+	<form action="search">
+		<input type="text" name="searchKey">
+		<input type="submit" value="검 색">
+	</form>
+	<br>
 	<table border="1" cellspacing="0" cellpadding="0" width="1000">
 		<tr>
 			<th>번 호</th>
@@ -23,7 +28,7 @@
 		<tr>
 			<td>${fboardDto.fbnum}</td>
 			<td>
-				<a href = "content_view?fbnum=${fboardDto.fbnum}">${fboardDto.fbtitle}</a>
+				<a href="content_view?fbnum=${fboardDto.fbnum}">${fboardDto.fbtitle}</a>
 			</td>
 			<td>${fboardDto.fbname}</td>
 			<td>${fboardDto.fbdate}</td>
@@ -32,8 +37,8 @@
 		</c:forEach>
 		
 		<tr>
-			<td colspan = "5">
-				<input type = "button" value = "글쓰기" onclick = "javascript:window.location.href = 'write_form'">
+			<td colspan="5">
+				<input type="button" value="글쓰기" onclick="javascript:window.location.href='write_form'">
 			</td>
 		</tr>
 	</table>
